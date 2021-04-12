@@ -35,17 +35,18 @@ See https://github.com/kswrestlingcenter/league/issues/1
 
 # Client Routes
 
-|development port       | endpoint                          | description               |
-|:----------------------|:----------------------------------|:--------------------------|
-|`http://localhost:6000`| `/`	                              | Re-directs to either the login or dashboard page. |
-|`http://localhost:6000`| `/login`                          | Allows user to either login or register.          |
-|`http://localhost:6000`| `/dashboard`                      | Used as a site map for now                        |
-|`http://localhost:6000`| `/wrestlers`	                    | |
-|`http://localhost:6000`| `/wrestlers/add`                  | |
-|`http://localhost:6000`| `/wrestlers/:id`                  | |
-|`http://localhost:6000`| `/league-events`                  | |
-|`http://localhost:6000`| `/league-events/:id/brackets`     | List all age/weight divisions |
-|`http://localhost:6000`| `/league-events/:id/brackets/:id` | View/edit the bracket |
-|`http://localhost:6000`| `/league-events/:id/matches`	    | |
-|`http://localhost:6000`| `/league-events/:id/weigh-in`     | |
-|`http://localhost:6000`| `/league-events/:id/wrestlers`    | List of wrestlers who have been entered|
+|development port       | endpoint                   | description                                         |
+|:----------------------|:---------------------------|:----------------------------------------------------|
+|`http://localhost:6000`| `/`	                       | Re-directs to either the login or dashboard page.   |
+|`http://localhost:6000`| `/login`                   | Allows user to either login or register.            |
+|`http://localhost:6000`| `/dashboard`               | Used as a site map for now                          |
+|`http://localhost:6000`| `/events`                  | List of upcoming events                             |
+|`http://localhost:6000`| `/events/:id`              | Stats for the Tournament,                           |
+|`http://localhost:6000`| `/events/:id/brackets`     | List all age/weight divisions                       |
+|`http://localhost:6000`| `/events/:id/brackets/:id` | View/edit the bracket                               |
+|`http://localhost:6000`| `/events/:id/matches`	     | Lists all matches for the event                     |
+|`http://localhost:6000`| `/events/:id/weigh-in`     | Form to record a weigh-in, register for tournament. |
+|`http://localhost:6000`| `/events/:id/wrestlers`    | List of wrestlers who have been entered             |
+|`http://localhost:6000`| `/wrestlers`	             | List of All wrestlers from DB                       |
+|`http://localhost:6000`| `/wrestlers/add`           | Form to add wrestler (USAW ID included)             |
+|`http://localhost:6000`| `/wrestlers/:id`           | View/Edit details of wrestler.                      |
