@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router' // there is also createWebHashHistory and createMemoryHistory
-import Dashboard          from './app/pages/Dashboard.vue'
-import Events          from './app/pages/events/Index.vue'
+import Home       from './app/pages/Home.vue'
+import EventsList from './app/pages/Events/index.vue'
+import WrestlersList from './app/pages/Wrestlers/index.vue'
 
 
 // Migration Guide: https://next.router.vuejs.org/guide/migration/#new-features
@@ -9,8 +10,9 @@ import Events          from './app/pages/events/Index.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/',  name: 'dashboard', component: Dashboard, },
-    { path: '/events',  name: 'events', component: Events, }
+    { path: '/',          name: 'home',      component: Home          },
+    { path: '/events',    name: 'events',    component: EventsList    },
+    { path: '/wrestlers', name: 'wrestlers', component: WrestlersList }
   ]
 })
 
