@@ -1,3 +1,28 @@
+# leage-kwc
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
 # KWC league
 League Software for KWC
 
@@ -30,7 +55,7 @@ See https://github.com/kswrestlingcenter/league/issues/1
 # Server Routes
 
 | method |development port       | endpoint     | description               |
-|:-------|:----------------------|:-------------|:--------------------------|
+|:-------|:----------------------|:-------------|:--------------------------|-
 | GET    |`http://localhost:6001`| `/`	        | Serves up HTML            |
 
 # Client Routes
