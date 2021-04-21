@@ -1,5 +1,5 @@
 <template>
-  <div>DASHBOARD VIEW</div>
+  <h1>Wrestlers Landing Page</h1>
 </template>
 
 <script>
