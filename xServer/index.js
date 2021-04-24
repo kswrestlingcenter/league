@@ -1,9 +1,11 @@
 const {createServer} = require('http')
-const express        = require('express')
 const cors           = require('cors')
+const express        = require('express')
 const helmet         = require('helmet')
-const morgan         = require ('morgan')
-const path = require('path')
+const morgan         = require('morgan')
+const path           = require('path')
+
+const connectDatabase = require('./config/database').connect
 
 const app = express()
 
@@ -17,6 +19,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use(express.static(path.resolve(__dirname, '../dist/')))
+
+// Connect Database
+connectDatabase()
 
 
 //################################################################
