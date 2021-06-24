@@ -8,7 +8,7 @@ const handleFailure = (err) => {
 
 module.exports = {
   connect: () => {
-    connection = mongoose.connection
+    const connection = mongoose.connection
 
     mongoose.set('useUnifiedTopology', true)
 
@@ -18,6 +18,7 @@ module.exports = {
     })
 
     mongoose.connect(process.env.MONGO_CLIENT_KWC, { useNewUrlParser : true } )
-  }
+  },
+  disconnect: async () => await mongoose.disconnect()
 }
 

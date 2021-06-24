@@ -5,7 +5,7 @@ const helmet         = require('helmet')
 const morgan         = require('morgan')
 const path           = require('path')
 
-const connectDatabase = require('./config/database').connect
+const database = require('./config/database')
 
 const app = express()
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve(__dirname, '../dist/')))
 
 // Connect Database
-connectDatabase()
+database.connect()
 
 
 //################################################################
@@ -36,11 +36,21 @@ server.listen(app.get('port'))
 
 console.log('APP - Server started on port %d in %s mode', app.get('port'), app.settings.env)
 
-process.on('uncaughtException', shutdown)
-process.on('SIGINT', shutdown)
-process.on('SIGTERM', shutdown)
+process
+  .on('uncaughtException', shutdown)
+  .on('unhandledRejection', shutdown)
+  .on('SIGINT', shutdown)
+  .on('SIGTERM', shutdown)
 
-function shutdown(err) {
-  console.error('Shutting Down. Reason: ', err)
-  return process.exit()
+async function shutdown(err) {
+  try {
+    await database.disconnect()
+    console.log('Shutting Down. Reason: ', err)
+    if (['SIGINT', 'SIGTERM'].includes(err)) return process.exit()
+    return process.exit(1)
+  }
+  catch (e) {
+    console.error(e)
+    return process.exit(1)
+  }
 }

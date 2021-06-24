@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const concurrently = require('concurrently')
+
+concurrently([
+  {name: 'CLIENT', command: 'webpack serve --mode=development --config=../webpack.dev.js', prefixColor: 'blue' },
+  {name: 'SERVER', command: 'node-dev --no-deps --respawn ./../xServer/index.js', prefixColor: "green"},
+], {
+  prefix: 'name',
+  cwd: __dirname,
+}).catch(e => {
+  throw e
+})

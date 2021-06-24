@@ -5,7 +5,7 @@ const { VueLoaderPlugin }    = require('vue-loader');
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: path.resolve(__dirname, './src/main.js')
   },
   output: {
     filename: '[name].bundle.js',
@@ -16,7 +16,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html'), //https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md
-      favicon: './public/favicon.ico'
+      favicon: path.resolve(__dirname, './public/favicon.ico')
     })
   ],
   module: {
