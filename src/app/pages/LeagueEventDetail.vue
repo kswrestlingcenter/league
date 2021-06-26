@@ -1,5 +1,6 @@
 <template>
-  <h1>Events Landing Page</h1>
+  <h1>Wrestler detail</h1>
+  <p>League Event Detail</p>
 </template>
 
 <script>
