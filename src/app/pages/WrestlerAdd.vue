@@ -1,36 +1,60 @@
 <template>
   <h1>Wrestler Add</h1>
-  <BaseInput
-    v-model="firstName"
-    label="First Name"
-    type="text"
-  />
-  <br>
-  <BaseInput
-    v-model="lastName"
-    label="Last Name"
-    type="text"
-  />
-  <br>
-  <BaseInput
-    v-model="usawNumber"
-    label="USAW Number"
-    type="text"
-  />
+  <form @submit.prevent="sendForm">
+    <fieldset>
+      <legend>Add wrestler name & USAW number</legend>
+      <BaseInput
+        v-model="wrestler.firstName"
+        label="First Name"
+        type="text"
+      />
+      <br>
+      <BaseInput
+        v-model="wrestler.lastName"
+        label="Last Name"
+        type="text"
+      />
+      <br>
+      <BaseInput
+        v-model="wrestler.usawNumber"
+        label="USAW Number"
+        type="text"
+      />
+      </fieldset>
+      <button type="submit">Submit</button>
+  </form>
+  <pre>{{ event }}</pre>
 </template>
 
 <script>
+import axios from 'axios'
+// import addWrestler from '../services/wrestlerServices'
+
 export default {
   data () {
     return {
-      firstname: '',
-      lastName: '',
-      usawNumber: ''
+      wrestler : {
+        firstName: '',
+        lastName: '',
+        usawNumber: ''
+      }
+    }
+  },
+  methods: {
+    sendForm(e) {
+      // Here is where we will:
+        // Validate Input
+        // Add spinning icon/animation
+      console.log({e})
+      axios
+        .post('/api/addWrestler', this.wrestler)
+        .then()
+        .catch()
+        .finally()
     }
   }
 }
 </script>
 
 <style>
-
 </style>

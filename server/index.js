@@ -1,22 +1,23 @@
 const {createServer} = require('http')
+const compression    = require('compression')
 const cors           = require('cors')
 const express        = require('express')
 const helmet         = require('helmet')
 const morgan         = require('morgan')
 const path           = require('path')
 
-const database = require('./config/database')
+const database = require('./services/database')
 
 const app = express()
 
 app.set('port', process.env.KWC_LEAGUE_PORT || 6060)
 
 app.use(helmet())
-app.use(cors()) // TO DO Trim this down for security
 app.use(morgan(':method :url :status :response-time ms - :res[content-length]'))
+app.use(cors()) // TO DO Trim this down for security
+app.use(compression())
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use('/api', require('./routes/v1'))
 
 app.use(express.static(path.resolve(__dirname, '../dist/')))
 
@@ -37,20 +38,21 @@ server.listen(app.get('port'))
 console.log('APP - Server started on port %d in %s mode', app.get('port'), app.settings.env)
 
 process
-  .on('uncaughtException', shutdown)
-  .on('unhandledRejection', shutdown)
-  .on('SIGINT', shutdown)
-  .on('SIGTERM', shutdown)
+  .on('uncaughtException', uncaughtHandler)
+  .on('unhandledRejection', uncaughtHandler)
+  .on('SIGINT', disconnect)
+  .on('SIGTERM', disconnect)
 
-async function shutdown(err) {
-  try {
-    await database.disconnect()
-    console.log('Shutting Down. Reason: ', err)
-    if (['SIGINT', 'SIGTERM'].includes(err)) return process.exit()
-    return process.exit(1)
-  }
-  catch (e) {
-    console.error(e)
-    return process.exit(1)
-  }
+function uncaughtHandler(err) {
+  console.error('Shutting Down. Reason: ', err)
+  disconnect()
+}
+
+function disconnect() {
+  Promise.all([database.disconnect()])
+    .then(() => process.exit(0))
+    .catch((e) => {
+      console.error("Error Shutting disconnecting: ", e)
+      process.exit(1)
+    })
 }

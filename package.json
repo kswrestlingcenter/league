@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode=production --config=webpack.prod.js",
-    "start": "node xServer/index.js",
+    "start": "node server/index.js",
     "dev": "bin/run-dev",
-    "server": "node-dev --no-deps --respawn xServer/index.js",
+    "server": "node-dev --no-deps --respawn server/index.js",
     "client": "webpack serve --config webpack.dev.js --env development",
     "test": "",
     "lint": ""
@@ -32,6 +32,7 @@
     "@babel/runtime-corejs3": "^7.13.17",
     "@vue/compiler-sfc": "^3.0.11",
     "axios": "^0.21.1",
+    "compression": "^1.7.4",
     "core-js": "^3.10.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",

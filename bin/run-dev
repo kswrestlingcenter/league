@@ -3,7 +3,7 @@
 const concurrently = require('concurrently')
 
 concurrently([
-  {name: 'SERVER', command: 'node-dev --no-deps --respawn ./../xServer/index.js', prefixColor: "green"},
+  {name: 'SERVER', command: 'node-dev --no-deps --respawn ./../server/index.js', prefixColor: "green"},
   {name: 'CLIENT', command: 'webpack serve --mode=development --config=../webpack.dev.js', prefixColor: 'blue' },
 ], {
   prefix: 'name',
