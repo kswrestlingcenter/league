@@ -14,3 +14,11 @@ exports.allWrestlers = wrap(async(req, res) => {
   const wrestlerList = await wrestler.getAllWrestlers()
   res.json({wrestlerList})
 })
+
+exports.getWrestlerById = wrap(async(req, res) => {
+  console.log("GetWrestlerById: ", req.params)
+  const returnedWrestler = await wrestler.getWrestlerById(req.params.wrestlerId)
+
+  console.log("GetWrestlerById Done: ", returnedWrestler)
+  res.json(returnedWrestler)
+})

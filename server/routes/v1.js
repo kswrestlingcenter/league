@@ -8,5 +8,6 @@ router.use(express.json())
 
 router.post('/addWrestler', wrestler.addWrestler)
 router.get('/allWrestlers', wrestler.allWrestlers)
+router.get('/wrestler/:wrestlerId', wrestler.getWrestlerById)
 
 module.exports = router
