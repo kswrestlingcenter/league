@@ -3,7 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const wrestlerSchema = new Schema({
-  usawId           : {type: String},
+  usawNumber       : {type: String},
+  usawStats        : {
+    lastVerified : {type: Date},
+    permissions  : [String],
+  },
   email            : {type: String, default: ""},
   createdAt        : {type: Date, default: Date.now},
   firstName        : {type: String, required: true},

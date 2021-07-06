@@ -48,9 +48,8 @@ export default {
       console.log({e})
       axios
         .post('/api/addWrestler', this.wrestler)
-        .then()
-        .catch()
-        .finally()
+        .then(() => this.$router.push({ name: 'wrestler-list'})) // re-direct to wrestler page
+        .catch((e) => console.error(e)) // Throw error
     }
   }
 }

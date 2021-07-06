@@ -5,7 +5,9 @@
 
 <script>
 export default {
-
+  setup(props, context) {
+    console.log("Wrestler Detail Setup", {props, context})
+  }
 }
 </script>
 

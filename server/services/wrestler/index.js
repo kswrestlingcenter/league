@@ -1,3 +1,4 @@
 module.exports = {
-  addWrestler : require('./addWrestler')
+  addWrestler : require('./addWrestler'),
+  getAllWrestlers: require('./getAllWrestlers')
 }
