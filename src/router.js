@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router' // there is also createWebHashHistory and createMemoryHistory
 import Home       from './app/pages/Home.vue'
 // import LoginComponent from './app/pages/Login/index.vue'
-import LeagueEventsList from './app/pages/LeagueEventsList.vue'
 import WrestlerDetail from './app/pages/WrestlerDetail.vue'
 import WrestlerList from './app/pages/WrestlerList.vue'
 import WrestlerAdd from './app/pages/WrestlerAdd.vue'
+import LeagueEventAdd from './app/pages/LeagueEventAdd.vue'
+import LeagueEventsList from './app/pages/LeagueEventsList.vue'
 import LeagueEventDetail from './app/pages/LeagueEventDetail.vue'
 import WeighIn from './app/pages/WeighIn.vue'
 import LeagueWrestlerList from './app/pages/LeagueWrestlerList.vue'
@@ -27,6 +28,7 @@ const router = createRouter({
     // { path: '/matches/:id', name: 'match-detail', component: MatchDetail }, // Not part of MVP
     // { path: '/matches/add', name: 'match-add', component: MatchAdd }, // Not part of MVP
     { path: '/league-events', name: 'league-event-list', component: LeagueEventsList},
+    { path: '/league-events/add', name: 'league-event-add', component: LeagueEventAdd},
     { path: '/league-events/:id', name: 'league-event-detail', component: LeagueEventDetail},
     { path: '/league-events/:id/weigh-in/:wrestlerId', name: 'weigh-in', component: WeighIn},
     { path: '/league-events/:id/wrestlers', name: 'events', component: LeagueWrestlerList},

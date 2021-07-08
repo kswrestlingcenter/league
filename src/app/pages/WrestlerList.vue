@@ -32,7 +32,7 @@ export default {
   components: {WrestlerCard},
   methods: {
     goToWrestlerDetail(wrestlerId) {
-      console.log(wrestlerId)
+      console.log({wrestlerId})
       this.$router.push({name: "wrestler-detail", params: {id: wrestlerId}})
     }
   }
