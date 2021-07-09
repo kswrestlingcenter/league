@@ -1,5 +1,5 @@
 <template>
-  <h1>Wrestler detail</h1>
+  <h1>League Event detail</h1>
   <p>League Event Detail</p>
 </template>
 
