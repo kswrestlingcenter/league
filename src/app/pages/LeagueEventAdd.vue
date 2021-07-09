@@ -17,7 +17,6 @@
 
 <script>
 import axios from 'axios'
-// import addWrestler from '../services/wrestlerServices'
 // Add Date Picker
 
 export default {
@@ -32,9 +31,10 @@ export default {
         // Validate Input
         // Add spinning icon/animation
       console.log({e})
+      console.log("Event Name: ", this.eventName)
       axios
-        .post('/api/addLeagueEvent', this.eventName)
-        .then(() => this.$router.push({ name: 'event-list'})) // re-direct to wrestler page
+        .post('/api/addLeagueEvent', {name: this.eventName})
+        .then(() => this.$router.push({ name: 'league-event-list'})) // re-direct to league list page
         .catch((e) => console.error(e)) // Throw error
     }
   }

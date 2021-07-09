@@ -2,7 +2,7 @@ const league = require('../services/league')
 const wrap = require('./helpers/async-wrapper')
 
 exports.addEvent = wrap(async(req, res) => {
-  console.log("Add Event: ", req.body)
+  console.log("Add Event: ", req.data)
   const event = await league.addEvent(req.body)
   console.log({event})
 
