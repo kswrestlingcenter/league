@@ -9,15 +9,15 @@ exports.addEvent = wrap(async(req, res) => {
   res.status(200).end()
 })
 
-exports.allEvents = wrap(async(req, res) => {
+exports.allLeagueEvents = wrap(async(req, res) => {
   console.log("All Events")
-  const eventList = await league.getAllEvents()
+  const eventList = await league.getallLeagueEvents()
   res.json(eventList)
 })
 
-exports.getEventById = wrap(async(req, res) => {
+exports.getLeagueEventById = wrap(async(req, res) => {
   console.log("getEventById: ", req.params)
-  const leagueEvent = await league.getEventById(req.params.leagueEventId)
+  const leagueEvent = await league.getLeagueEventById(req.params.leagueEventId)
 
   console.log("getEventById Done: ", leagueEvent)
   res.json(leagueEvent)

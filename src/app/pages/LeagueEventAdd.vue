@@ -34,7 +34,7 @@ export default {
       console.log("Event Name: ", this.eventName)
       axios
         .post('/api/addLeagueEvent', {name: this.eventName})
-        .then(() => this.$router.push({ name: 'league-event-list'})) // re-direct to league list page
+        .then(() => this.$router.push({name: 'league-event-list'})) // re-direct to league list page
         .catch((e) => console.error(e)) // Throw error
     }
   }

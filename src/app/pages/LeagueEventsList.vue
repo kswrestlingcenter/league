@@ -23,7 +23,7 @@ export default {
     }
   },
   async created() {
-    const leagueEvents = await axios.get('api/allEvents')
+    const leagueEvents = await axios.get('api/allLeagueEvents')
     console.log('leagueEvents.data', leagueEvents.data)
     this.leagueEvents = leagueEvents.data
     this.isLoading = false

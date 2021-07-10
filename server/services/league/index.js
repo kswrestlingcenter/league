@@ -1,4 +1,5 @@
 module.exports = {
   addEvent: require('./addLeagueEvent'),
-  getAllEvents: require('./getAllEvents')
+  getAllLeagueEvents: require('./getAllLeagueEvents'),
+  getLeagueEventById: require('./getLeagueEventById')
 }
