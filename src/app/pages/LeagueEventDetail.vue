@@ -1,6 +1,9 @@
 <template>
   <h1>League Event detail</h1>
   <p>League Event Detail</p>
+  <p>Name: {{leagueEvent.name}}</p>
+  <p>Status: {{leagueEvent.status}}</p>
+  <hr>
   {{leagueEvent}}
 </template>
 

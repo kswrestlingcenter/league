@@ -11,7 +11,7 @@ exports.addEvent = wrap(async(req, res) => {
 
 exports.allLeagueEvents = wrap(async(req, res) => {
   console.log("All Events")
-  const eventList = await league.getallLeagueEvents()
+  const eventList = await league.getAllLeagueEvents()
   res.json(eventList)
 })
 
