@@ -4,25 +4,25 @@
     <fieldset>
       <legend>Add Participant name & USAW number</legend>
       <BaseInput
-        v-model="wrestler.firstName"
+        v-model="participant.firstName"
         label="First Name"
         type="text"
       />
       <br>
       <BaseInput
-        v-model="wrestler.lastName"
+        v-model="participant.lastName"
         label="Last Name"
         type="text"
       />
       <br>
       <BaseInput
-        v-model="wrestler.usawNumber"
+        v-model="participant.usawNumber"
         label="USAW Number"
         type="text"
       />
       <br>
       <BaseInput
-        v-model="wrestler.weight"
+        v-model="participant.weight"
         label="Weight"
         type="text"
       />
@@ -36,22 +36,15 @@
 import axios from 'axios'
 
 export default {
-  setup(props, context) {
-    console.log("SETUP - League Event Detail Page:", {props, context})
-
-    return {}
-  },
-  async created() {
-    console.log("CREATED - route params: ", this.$route.params)
-  },
   data () {
     return {
-      wrestler : {
+      participant : {
         firstName: '',
         lastName: '',
         usawNumber: '',
-        weight: ''
-      }
+        weight: '',
+        leagueEventId: this.$route.params.id
+      },
     }
   },
   methods: {
@@ -61,8 +54,8 @@ export default {
         // Add spinning icon/animation
       console.log({e})
       axios
-        .post('/api/addWrestler', this.wrestler)
-        .then(() => this.$router.push({ name: 'wrestler-list'})) // re-direct to wrestler page
+        .post(`/api/leagueEvent/${this.$route.params?.id}/addParticipant`, this.participant)
+        .then(() => this.$router.push({ name: 'league-event-detail', params: {id: this.$route.params.id}})) // re-direct to event page
         .catch((e) => console.error(e)) // Throw error
     }
   }

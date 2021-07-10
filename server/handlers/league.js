@@ -22,3 +22,11 @@ exports.getLeagueEventById = wrap(async(req, res) => {
   console.log("getEventById Done: ", leagueEvent)
   res.json(leagueEvent)
 })
+
+exports.addParticipant = wrap(async(req, res) => {
+  console.log("Add participant: ", req.data)
+  const participant = await league.addParticipant(req.body)
+  console.log({participant})
+
+  res.status(200).end()
+})

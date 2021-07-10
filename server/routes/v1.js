@@ -14,5 +14,6 @@ router.get('/wrestler/:wrestlerId', wrestler.getWrestlerById)
 router.post('/addLeagueEvent', league.addEvent)
 router.get('/allLeagueEvents', league.allLeagueEvents)
 router.get('/leagueEvent/:leagueEventId', league.getLeagueEventById)
+router.post('/leagueEvent/:leagueEventId/addParticipant', league.addParticipant)
 
 module.exports = router
