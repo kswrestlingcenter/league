@@ -4,11 +4,11 @@ import Home       from './app/pages/Home.vue'
 import WrestlerDetail from './app/pages/WrestlerDetail.vue'
 import WrestlerList from './app/pages/WrestlerList.vue'
 import WrestlerAdd from './app/pages/WrestlerAdd.vue'
-import LeagueEventAdd from './app/pages/LeagueEventAdd.vue'
+import LeagueEventAddParticipant from './app/pages/LeagueEventAddParticipant.vue'
+import LeagueEventCreate from './app/pages/LeagueEventCreate.vue'
 import LeagueEventsList from './app/pages/LeagueEventsList.vue'
 import LeagueEventDetail from './app/pages/LeagueEventDetail.vue'
 import WeighIn from './app/pages/WeighIn.vue'
-import LeagueWrestlerList from './app/pages/LeagueWrestlerList.vue'
 import LeagueMatchList from './app/pages/LeagueMatchList.vue'
 import LeagueMatchDetail from './app/pages/LeagueMatchDetail.vue'
 
@@ -28,10 +28,10 @@ const router = createRouter({
     // { path: '/matches/:id', name: 'match-detail', component: MatchDetail }, // Not part of MVP
     // { path: '/matches/add', name: 'match-add', component: MatchAdd }, // Not part of MVP
     { path: '/league-events', name: 'league-event-list', component: LeagueEventsList},
-    { path: '/league-events/add', name: 'league-event-add', component: LeagueEventAdd},
+    { path: '/league-events/:id/add-participant', name: 'league-event-add-participant', component: LeagueEventAddParticipant},
+    { path: '/league-events/create', name: 'league-event-create', component: LeagueEventCreate},
     { path: '/league-events/:id', name: 'league-event-detail', component: LeagueEventDetail},
     { path: '/league-events/:id/weigh-in/:wrestlerId', name: 'weigh-in', component: WeighIn},
-    { path: '/league-events/:id/wrestlers', name: 'events', component: LeagueWrestlerList},
     { path: '/league-events/:id/matches', name: 'events', component: LeagueMatchList},
     { path: '/league-events/:id/matches/:matchId', name: 'events', component: LeagueMatchDetail},
     // { path: '/league-events/:id/brackets', name: 'events', component: EventsList}, // Not part of MVP

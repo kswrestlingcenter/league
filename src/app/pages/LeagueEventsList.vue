@@ -1,6 +1,6 @@
 <template>
   <h1>League Events list</h1>
-  <router-link to="/league-events/add">+ Create an Event</router-link>
+  <router-link to="/league-events/create">+ Create an Event</router-link>
   <hr>
 
   <LeagueEventCard v-for="event in leagueEvents"
