@@ -3,9 +3,9 @@
   <p>Name: {{leagueEvent.name}}</p>
   <p>Status: {{leagueEvent.status}}</p>
   <p>Created: {{leagueEvent.createdAt}}</p>
-  <p>Number of Participants:{{leagueEvent.participants?.length}}</p>
   <hr>
   <router-link :to="addParticipantUrl">+ Add participant</router-link>
+  <p>Number of Participants:{{leagueEvent.participants?.length}}</p>
 
   <ParticipantCard v-for="participant in leagueEvent.participants"
     :key="participant._id"

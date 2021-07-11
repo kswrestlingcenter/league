@@ -3,31 +3,22 @@
   <form @submit.prevent="sendForm">
     <fieldset>
       <legend>Add Participant name & USAW number</legend>
-      <BaseInput
-        v-model="participant.firstName"
-        label="First Name"
-        type="text"
+      <br>
+      <BaseSelect
+        :options="formattedWrestlerList()"
+        :displayValue="displayValue"
+        v-model="selectedWrestler"
+        label="Select a wrestler"
       />
       <br>
       <BaseInput
-        v-model="participant.lastName"
-        label="Last Name"
-        type="text"
-      />
-      <br>
-      <BaseInput
-        v-model="participant.usawNumber"
-        label="USAW Number"
-        type="text"
-      />
-      <br>
-      <BaseInput
-        v-model="participant.weight"
+        v-model="weight"
         label="Weight"
         type="text"
       />
-      </fieldset>
+      <br>
       <button type="submit">Submit</button>
+    </fieldset>
   </form>
   <pre>{{ event }}</pre>
 </template>
@@ -36,18 +27,28 @@
 import axios from 'axios'
 
 export default {
+  async created() {
+    const wrestlerList = await axios.get('../../api/allWrestlers')
+    console.log(wrestlerList.data)
+    this.wrestlers = wrestlerList.data.wrestlerList
+  },
   data () {
     return {
-      participant : {
-        firstName: '',
-        lastName: '',
-        usawNumber: '',
-        weight: '',
-        leagueEventId: this.$route.params.id
-      },
+      wrestlers: [],
+      selectedWrestler: {},
+      leagueEventId: this.$route.params.id,
+      weight: 0
     }
   },
   methods: {
+    formattedWrestlerList() {
+      return this.wrestlers.map((wrestler) => {
+        return {
+          displayValue: wrestler.firstName + " " + wrestler.lastName,
+          wrestler: wrestler
+        }
+      })
+    },
     sendForm(e) {
       // Here is where we will:
         // Validate Input
@@ -57,6 +58,15 @@ export default {
         .post(`/api/leagueEvent/${this.$route.params?.id}/addParticipant`, this.participant)
         .then(() => this.$router.push({ name: 'league-event-detail', params: {id: this.$route.params.id}})) // re-direct to event page
         .catch((e) => console.error(e)) // Throw error
+    }
+  },
+  computed: {
+    participant() {
+      return {
+        wrestlerId: this.selectedWrestler._id,
+        leagueEventId: this.leagueEventId,
+        weight: this.weight
+      }
     }
   }
 }
