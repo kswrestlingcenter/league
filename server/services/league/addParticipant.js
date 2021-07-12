@@ -5,8 +5,8 @@ const Wrestler = require('../../models/wrestler')
 module.exports = async ({wrestlerId, leagueEventId, weight}) => {
   console.log("Adding Participant to League :", {wrestlerId, leagueEventId, weight})
 
-  // const wrestler = await Wrestler.findById(wrestlerId).toJSON()
-  const wrestler = await Wrestler.findOne()
+  const wrestler = await Wrestler.findById(wrestlerId)
+  // const wrestler = await Wrestler.findOne()
 
   console.log({wrestler})
 

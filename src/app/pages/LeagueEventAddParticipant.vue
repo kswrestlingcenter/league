@@ -4,12 +4,21 @@
     <fieldset>
       <legend>Add Participant name & USAW number</legend>
       <br>
-      <BaseSelect
-        :options="formattedWrestlerList()"
-        :displayValue="displayValue"
-        v-model="selectedWrestler"
-        label="Select a wrestler"
-      />
+
+      <input
+        type="text"
+        autocomplete="off"
+        v-model="userInput.wrestlerName"
+        @input="filterWrestlers"
+        @focus="showDropDown = true"
+      >
+
+      <div v-if="wrestlerAutoComplete && showDropDown">
+        <ul>
+          <li v-bind:key="wrestler._id" v-for="wrestler in wrestlerAutoComplete" @click="setSelectedWrestler(wrestler)">{{formatWrestlerName(wrestler)}}</li>
+        </ul>
+      </div>
+
       <br>
       <BaseInput
         v-model="weight"
@@ -20,7 +29,7 @@
       <button type="submit">Submit</button>
     </fieldset>
   </form>
-  <pre>{{ event }}</pre>
+  <pre>{{ userInput }}</pre>
 </template>
 
 <script>
@@ -35,19 +44,34 @@ export default {
   data () {
     return {
       wrestlers: [],
-      selectedWrestler: {},
+      userInput: {
+        wrestlerName: '',
+        wrestlerId: ''
+      },
       leagueEventId: this.$route.params.id,
-      weight: 0
+      weight: 0,
+      wrestlerAutoComplete: [],
+      showDropDown: false
     }
   },
   methods: {
-    formattedWrestlerList() {
-      return this.wrestlers.map((wrestler) => {
-        return {
-          displayValue: wrestler.firstName + " " + wrestler.lastName,
-          wrestler: wrestler
-        }
+    filterWrestlers() {
+      this.wrestlerAutoComplete = this.wrestlers.filter(wrestler => {
+        if (wrestler.firstName?.toLowerCase().startsWith(this.userInput.wrestlerName?.toLowerCase())) return wrestler
+        if (wrestler.lastName?.toLowerCase().startsWith(this.userInput.wrestlerName?.toLowerCase())) return wrestler
+        return false
       })
+    },
+    formatWrestlerName(wrestler) {
+      return wrestler.firstName + " " + wrestler.lastName
+    },
+    setSelectedWrestler(wrestler) {
+      console.log("setSelectedWrestler: ", wrestler)
+      this.userInput.wrestlerName = this.formatWrestlerName(wrestler)
+      this.userInput.wrestlerId = wrestler._id
+
+      this.showDropDown = false
+
     },
     sendForm(e) {
       // Here is where we will:
@@ -62,8 +86,10 @@ export default {
   },
   computed: {
     participant() {
+      const wrestlerId = this.selectedWrestler?._id || this.wrestlerAutoComplete[0]?._id
+      console.log("selectedWrestler", this.selectedWrestler)
       return {
-        wrestlerId: this.selectedWrestler._id,
+        wrestlerId: wrestlerId,
         leagueEventId: this.leagueEventId,
         weight: this.weight
       }
