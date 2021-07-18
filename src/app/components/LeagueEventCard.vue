@@ -2,8 +2,8 @@
   <div class="league-event-card">
     <h4>Event: {{ leagueEvent.name }}</h4>
     <span>status: {{leagueEvent.status}}</span><br>
-    <span># of participants: {{leagueEvent.participants.length}}</span>
-    <span>date: {{leagueEvent.createdAt}}</span><br>
+    <span># of participants: {{leagueEvent.participants.length}}</span><br>
+    <span>date: {{leagueEvent.createdAt}}</span>
   </div>
 </template>
 
