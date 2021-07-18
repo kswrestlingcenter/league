@@ -4,12 +4,20 @@
   <p>Status: {{leagueEvent.status}}</p>
   <p>Created: {{leagueEvent.createdAt}}</p>
   <hr>
+  <BaseButton
+    type="submit"
+    buttonClass="-fill-gradient"
+    :disabled="!leagueEvent.participants?.length"
+    @click="endWeighIns()">End Weigh-ins
+  </BaseButton>
+  <hr>
   <router-link :to="addParticipantUrl">+ Add participant</router-link>
   <p>Number of Participants:{{leagueEvent.participants?.length}}</p>
 
   <ParticipantCard v-for="participant in leagueEvent.participants"
     :key="participant._id"
     :wrestler="participant"
+    @click="goToEventWrestlerDetail(participant._id)"
   />
   <!-- {{leagueEvent}} -->
 </template>
@@ -37,6 +45,15 @@ export default {
   computed: {
     addParticipantUrl() {
       return `${this.$route.params?.id}/add-participant`
+    }
+  },
+  methods: {
+    goToEventWrestlerDetail(wrestlerId) {
+      console.log({wrestlerId})
+      this.$router.push({name: "league-event-participant-detail", params: {id: this.$route.params?.id, wrestlerId: wrestlerId}})
+    },
+    endWeighIns() {
+      console.log("end Weigh-ins, now it's time to auto-bracket them based on age/skill level")
     }
   }
 }
