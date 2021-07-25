@@ -54,6 +54,10 @@ export default {
     },
     endWeighIns() {
       console.log("end Weigh-ins, now it's time to auto-bracket them based on age/skill level")
+      // Set the status on the shipment to close
+      // Add weigh-in events to each wrestler's official record.
+      // Start the bracketing process.
+      // Re-direct to league-events/:id/matches page.
     }
   }
 }
